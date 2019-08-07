@@ -19,4 +19,4 @@ class Broker:
         if not dequed_item:
             return None
         dequed_item = dequed_item[1]
-        return dequed_item      
+        return dequed_item

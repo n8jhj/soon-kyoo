@@ -44,7 +44,7 @@ class BaseTask(abc.ABC):
             task = {'task_id': task_id, 'args': args, 'kwargs': kwargs}
             serialized_task = json.dumps(task)
             self.broker.enqueue(
-                queue_name=self.task_name, item=serialized_task)
+                item=serialized_task, queue_name=self.task_name)
             self.set_status('enqueued')
             print(f'Task {task_id} succesfully queued.')
         except Exception:
