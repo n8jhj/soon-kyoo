@@ -61,6 +61,7 @@ class BaseTask(abc.ABC):
         if status not in (
                 'detached', 'enqueued', 'dequeued', 'running', 'complete'):
             raise ValueError(f'Task status {status!r} not recognized.')
+        self.status = status
 
     def __repr__(self):
         return (f"{self.__class__.__name__}({self.status})")
