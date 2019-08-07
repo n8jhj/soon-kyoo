@@ -10,7 +10,7 @@ class TimerTask(BaseTask):
     """Task to count to a certain number a certain number of times.
     """
 
-    task_name = "TimerTask"
+    task_name = 'TimerTask'
 
     def run(self, interval, n):
         """Count at the given interval the given number of times.
