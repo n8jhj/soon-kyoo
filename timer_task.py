@@ -28,4 +28,4 @@ class TimerTask(BaseTask):
 
 if __name__ == '__main__':
     timer_task = TimerTask()
-    timer_task.run(5, 3)
+    timer_task.delay(3, 3)

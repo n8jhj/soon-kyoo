@@ -41,10 +41,13 @@ class BaseTask(abc.ABC):
     def delay(self, *args, **kwargs):
         try:
             task_id = str(uuid.uuid4())
-            task = {'task_id': task_id, 'args': args, 'kwargs': kwargs}
-            serialized_task = json.dumps(task)
+            task = dict(
+                task_id=task_id,
+                args=json.dumps(args),
+                kwargs=json.dumps(kwargs),
+            )
             self.broker.enqueue(
-                item=serialized_task, queue_name=self.task_name)
+                item=task, queue_name=self.task_name)
             self.set_status('enqueued')
             print(f'Task {task_id} succesfully queued.')
         except Exception:
