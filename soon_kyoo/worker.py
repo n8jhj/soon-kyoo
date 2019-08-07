@@ -31,6 +31,7 @@ class Worker:
                 # Do run.
                 print(f'Running task: {task_id}')
                 self.task.run(*task_args, **task_kwargs)
+                self.task.status = 'running'
                 print(f'Succesful run of task: {task_id}')
             except Exception:
                 print(f'Unable to execute task {self.task}.')

@@ -31,6 +31,12 @@ class BaseTask(abc.ABC):
         if not self.task_name:
             raise ValueError("Class attribute 'task_name' should be set.")
         self.broker = Broker()
+        # Status options:
+        # detached - Instantiated, not queued.
+        # queued - Queued via Broker.
+        # running - Running via Worker.
+        # complete - Run complete.
+        self.status = 'detached'
 
     @abc.abstractmethod
     def run(self, *args, **kwargs):
@@ -44,6 +50,10 @@ class BaseTask(abc.ABC):
             serialized_task = json.dumps(task)
             self.broker.enqueue(
                 queue_name=self.task_name, item=serialized_task)
+            self.status = 'queued'
             print(f'Task {task_id} succesfully queued.')
         except Exception:
-            raise Exception('Unable to publish task to the broker.')  
+            raise Exception(f'Unable to publish task {task_id} to the broker.')  
+    
+    def __repr__(self):
+        return (f"{self.__class__.__name__}({self.status})")
