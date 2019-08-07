@@ -49,7 +49,7 @@ class BaseTask(abc.ABC):
             self.broker.enqueue(
                 item=task, queue_name=self.task_name)
             self.set_status('enqueued')
-            print(f'Task {task_id} succesfully queued.')
+            print(f'Queued task: {task_id}')
         except Exception:
             raise Exception(f'Unable to publish task {task_id} to the broker.')  
 

@@ -35,7 +35,7 @@ class Worker:
                 print(f'Running task: {task_id}')
                 self.task.set_status('running')
                 self.task.run(*task_args, **task_kwargs)
-                print(f'Succesful run of task: {task_id}')
+                print(f'Finished task: {task_id}')
                 self.task.set_status('complete')
             except Exception:
                 if not self.waiting:
