@@ -25,6 +25,7 @@ class Broker:
                 item['task_id'], queue_name, new_position, item['args'],
                 item['kwargs'], dt.datetime.now(),
             ))
+        con.close()
 
     def dequeue(self, queue_name):
         dequed_item = self.redis_instance.brpop(queue_name, timeout=3)
