@@ -2,7 +2,7 @@
 """
 
 from soon_kyoo.worker import Worker
-from timer_tasks import TimerTask
+from timer_task import TimerTask
 
 
 if __name__ == "__main__":
