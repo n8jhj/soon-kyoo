@@ -29,7 +29,7 @@ class BaseTask(abc.ABC):
 
     def __init__(self):
         if not self.task_name:
-            raise ValueError('task_name should be set')
+            raise ValueError("Class attribute 'task_name' should be set.")
         self.broker = Broker()
 
     @abc.abstractmethod
@@ -40,8 +40,8 @@ class BaseTask(abc.ABC):
     def delay(self, *args, **kwargs):
         try:
             task_id = str(uuid.uuid4())
-            _task = {'task_id': task_id, 'args': args, 'kwargs': kwargs}
-            serialized_task = json.dumps(_task)
+            task = {'task_id': task_id, 'args': args, 'kwargs': kwargs}
+            serialized_task = json.dumps(task)
             self.broker.enqueue(queue_name=self.task_name, item=serialized_task)
             print(f'Task {task_id} succesfully queued.')
         except Exception:
