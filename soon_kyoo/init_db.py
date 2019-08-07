@@ -4,13 +4,12 @@ Defines:
 init_db
 """
 
-import pathlib
 import sqlite3
+
+from .db_config import db_path
 
 
 def init_db():
-    here = pathlib.Path(__file__)
-    db_path = here.parents[0] / 'instance' / 'queue.sqlite'
     conn = sqlite3.connect(db_path)
     with conn:
         conn.execute('''CREATE TABLE queue
