@@ -20,8 +20,8 @@ class TimerTask(BaseTask):
         n - (int) Number of times to count the given interval.
         """
         for i in range(n):
-            now = time.strftime()
-            print(f'{i}/{n} -- {now} -- Sleeping for {interval} seconds.')
+            now = time.strftime('%Y-%m-%d %H:%M:%S')
+            print(f'{i+1}/{n} -- {now} -- Sleeping for {interval} seconds.')
             time.sleep(interval)
         print(f'Slept {interval * n} seconds total.')
 
