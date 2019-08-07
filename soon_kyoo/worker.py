@@ -6,6 +6,8 @@ Worker
 
 import json
 
+import click
+
 
 class Worker:
     """Basic worker class.
@@ -32,13 +34,13 @@ class Worker:
                 task_args = json.loads(task_args)
                 task_kwargs = json.loads(task_kwargs)
                 # Run.
-                print(f'Running task: {task_id}')
+                click.echo(f'Running task: {task_id}')
                 self.task.set_status('running')
                 self.task.run(*task_args, **task_kwargs)
-                print(f'Finished task: {task_id}')
+                click.echo(f'Finished task: {task_id}')
                 self.task.set_status('complete')
             except Exception:
                 if not self.waiting:
-                    print(f'Waiting for next task...')
+                    click.echo(f'Waiting for next task...')
                     self.waiting = True
                 continue
