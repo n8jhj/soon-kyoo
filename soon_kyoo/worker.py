@@ -21,7 +21,8 @@ class Worker:
     def start(self,):
         while True:
             try:
-                _dequeued_item = self.task.broker.dequeue(queue_name=self.task.task_name)
+                _dequeued_item = self.task.broker.dequeue(
+                    queue_name=self.task.task_name)
                 dequeued_item = json.loads(_dequeued_item)
                 task_id = dequeued_item["task_id"]
                 task_args = dequeued_item["args"]

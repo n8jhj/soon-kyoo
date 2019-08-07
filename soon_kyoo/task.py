@@ -42,7 +42,8 @@ class BaseTask(abc.ABC):
             task_id = str(uuid.uuid4())
             task = {'task_id': task_id, 'args': args, 'kwargs': kwargs}
             serialized_task = json.dumps(task)
-            self.broker.enqueue(queue_name=self.task_name, item=serialized_task)
+            self.broker.enqueue(
+                queue_name=self.task_name, item=serialized_task)
             print(f'Task {task_id} succesfully queued.')
         except Exception:
             raise Exception('Unable to publish task to the broker.')  

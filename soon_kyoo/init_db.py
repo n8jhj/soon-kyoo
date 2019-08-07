@@ -13,7 +13,9 @@ def init_db():
     conn = sqlite3.connect(db_path)
     with conn:
         conn.execute('''CREATE TABLE queue
-            (id TEXT PRIMARY KEY NOT NULL, position INTEGER UNIQUE NOT NULL, name TEXT)''')
+            (id TEXT PRIMARY KEY NOT NULL,
+                position INTEGER UNIQUE NOT NULL,
+                name TEXT)''')
     conn.close()
 
 
