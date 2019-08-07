@@ -21,7 +21,6 @@ def init_db():
             con.execute(f'''CREATE TABLE {table_name}
                 (task_id TEXT PRIMARY KEY NOT NULL,
                     queue_name TEXT,
-                    task_name TEXT,
                     position INTEGER UNIQUE NOT NULL,
                     args TEXT,
                     kwargs TEXT,
@@ -35,7 +34,7 @@ def init_db():
         with con:
             con.execute(f'''CREATE TABLE {table_name}
                 (task_id TEXT PRIMARY KEY NOT NULL,
-                    name TEXT,
+                    queue_name TEXT,
                     status TEXT,
                     started TIMESTAMP NOT NULL)''')
         click.echo(f'Table {table_name!r} created.')
