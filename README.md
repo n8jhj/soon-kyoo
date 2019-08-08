@@ -1,5 +1,9 @@
 # soon-kyoo
- Simple queueing.
+Simple queueing.
 
- This project is named after my friend, Soon-Kyoo. We always call him Q,
- for short.
+## Introduction
+Implements a simple FIFO queue using SQLite. It is developed on Windows,
+primarily for Windows.
+
+## Etymology
+This project is named after my friend, Soon-Kyoo. People call him Q, for short.
