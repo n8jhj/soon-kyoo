@@ -20,11 +20,11 @@ def init_db():
         with con:
             con.execute(f'''CREATE TABLE {table_name}
                 (task_id TEXT PRIMARY KEY NOT NULL,
-                    queue_name TEXT,
                     position INTEGER UNIQUE NOT NULL,
+                    published TIMESTAMP NOT NULL,
+                    queue_name TEXT,
                     args TEXT,
-                    kwargs TEXT,
-                    published TIMESTAMP NOT NULL)''')
+                    kwargs TEXT)''')
         click.echo(f'Table {table_name!r} created.')
     except sqlite3.OperationalError:
         click.echo(f'Table {table_name!r} already exists.')
@@ -34,9 +34,9 @@ def init_db():
         with con:
             con.execute(f'''CREATE TABLE {table_name}
                 (task_id TEXT PRIMARY KEY NOT NULL,
+                    started TIMESTAMP NOT NULL,
                     queue_name TEXT,
-                    status TEXT,
-                    started TIMESTAMP NOT NULL)''')
+                    status TEXT)''')
         click.echo(f'Table {table_name!r} created.')
     except sqlite3.OperationalError:
         click.echo(f'Table {table_name!r} already exists.')
