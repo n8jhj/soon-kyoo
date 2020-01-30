@@ -17,6 +17,7 @@ class Worker:
         worker = Worker(task=task)
         worker.start()
     """
+
     def __init__(self, task):
         self.task = task
         self.waiting = False

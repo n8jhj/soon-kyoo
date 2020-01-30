@@ -37,10 +37,13 @@ class BaseTask(abc.ABC):
 
     @abc.abstractmethod
     def run(self, *args, **kwargs):
-        # Subclasses should implement their run logic here.
+        """Subclasses should implement their business logic here.""""
         pass
 
     def delay(self, *args, **kwargs):
+        """Have the broker enqueue this task, thereby delaying its
+        execution until some future time.
+        """
         try:
             task_id = str(uuid.uuid4())
             task = dict(
