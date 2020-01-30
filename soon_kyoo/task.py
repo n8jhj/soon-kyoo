@@ -56,7 +56,7 @@ class BaseTask(abc.ABC):
             self.set_status('enqueued')
             click.echo(f'Queued task: {task_id}')
         except Exception:
-            raise Exception(f'Unable to publish task {task_id} to the broker.')  
+            raise RuntimeError(f'Unable to publish task {task_id} to the broker.')  
 
     def set_status(self, status):
         """Set status of the BaseTask instance. Options are:
