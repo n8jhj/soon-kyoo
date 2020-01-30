@@ -38,7 +38,7 @@ class BaseTask(abc.ABC):
     @abc.abstractmethod
     def run(self, *args, **kwargs):
         # Subclasses should implement their run logic here.
-        raise NotImplementedError('Task run method must be implemented.')
+        pass
 
     def delay(self, *args, **kwargs):
         try:
