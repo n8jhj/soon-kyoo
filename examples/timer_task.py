@@ -1,5 +1,4 @@
-"""Script for running a timer task.
-"""
+# timer_task.py
 
 import time
 
@@ -27,5 +26,9 @@ class TimerTask(BaseTask):
 
 
 if __name__ == '__main__':
+    # Create a new task.
     timer_task = TimerTask()
+
+    # Add the task to the queue, to be executed at some future time.
+    # Arguments to delay() are the same as for run().
     timer_task.delay(3, 3)
