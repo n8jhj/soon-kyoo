@@ -1,6 +1,6 @@
 """Implements broker classes.
 
-Defines:
+Classes:
 Broker
 """
 

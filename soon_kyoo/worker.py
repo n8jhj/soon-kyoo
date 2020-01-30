@@ -1,6 +1,6 @@
 """Implements worker classes.
 
-Defines:
+Classes:
 Worker
 """
 

@@ -1,6 +1,6 @@
 """Implements task classes.
 
-Defines:
+Classes:
 BaseTask - Base task class.
 """
 

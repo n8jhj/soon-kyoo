@@ -1,6 +1,6 @@
 """Functionality for initializing the database.
 
-Defines:
+Click commands:
 init_db
 """
 
