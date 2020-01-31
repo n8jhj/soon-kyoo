@@ -27,13 +27,17 @@ class BaseTask(abc.ABC):
         adder.delay(9, 34)
     """
 
-    task_name = None
-
     def __init__(self):
-        if not self.task_name:
-            raise ValueError("Class attribute 'task_name' should be set.")
         self.broker = Broker()
         self.set_status('detached')
+
+    @property
+    @abc.abstractmethod
+    def task_name(self):
+        """Class attribute to be implemented by child classes. Indicates
+        the name of this task type.
+        """
+        return None
 
     @abc.abstractmethod
     def run(self, *args, **kwargs):
