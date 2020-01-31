@@ -27,10 +27,23 @@ class Broker:
             )
             max_position = c.fetchone()
             new_position = max_position[0] + 1 if max_position else 0
-            con.execute('INSERT INTO queue VALUES (?, ?, ?, ?, ?, ?)', (
-                item['task_id'], queue_name, new_position, item['args'],
-                item['kwargs'], dt.datetime.now(),
-            ))
+            con.execute(
+                '''
+                INSERT INTO queue (
+                    task_id,
+                    position,
+                    published,
+                    queue_name,
+                    args,
+                    kwargs
+                )
+                VALUES (?, ?, ?, ?, ?, ?)
+                ''',
+                (
+                    item['task_id'], queue_name, new_position, item['args'],
+                    item['kwargs'], dt.datetime.now(),
+                )
+            )
         con.close()
 
     def dequeue(self, queue_name):
