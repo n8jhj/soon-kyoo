@@ -23,6 +23,7 @@ class Worker:
         self.waiting = False
 
     def start(self):
+        """Begin working on the assigned type of task."""
         while True:
             try:
                 # Read database.

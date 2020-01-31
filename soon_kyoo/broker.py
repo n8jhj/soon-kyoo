@@ -15,6 +15,7 @@ class Broker:
     """
 
     def enqueue(self, item, queue_name):
+        """Enqueue the given item in the queue with the given name."""
         con = sqlite3.connect(str(db_path))
         with con:
             c = con.execute(
@@ -33,6 +34,9 @@ class Broker:
         con.close()
 
     def dequeue(self, queue_name):
+        """Dequeue the next item (item with lowest position number) from
+        the queue with the given name and return it.
+        """
         con = sqlite3.connect(str(db_path))
         con.row_factory = sqlite3.Row
         with con:
