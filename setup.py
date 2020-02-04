@@ -29,7 +29,8 @@ ENTRY_POINTS = '''
 here = pathlib.Path(__file__).parents[0]
 
 # Import the README and use it as the long-description.
-# Note: this will only work if 'README.md' is present in the MANIFEST.in file.
+# Note: this will only work if 'README.md' is present in the MANIFEST.in
+# file.
 try:
     with open(here / 'README.md', encoding='utf-8') as f:
         long_description = '\n' + f.read()
