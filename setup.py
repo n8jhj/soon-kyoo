@@ -23,6 +23,7 @@ REQUIRED = [
 ENTRY_POINTS = '''
     [console_scripts]
     soon-kyoo=soon_kyoo.cli.soon_kyoo:soon_kyoo
+    sk=soon_kyoo.cli.soon_kyoo:soon_kyoo
 '''
 
 here = pathlib.Path(__file__).parents[0]
