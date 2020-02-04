@@ -25,9 +25,9 @@ def init_db():
                     queue_name TEXT,
                     args TEXT,
                     kwargs TEXT)''')
-        click.echo(f'Table {table_name!r} created.')
+        click.echo(f'Table {table_name!r} created')
     except sqlite3.OperationalError:
-        click.echo(f'Table {table_name!r} already exists.')
+        click.echo(f'Table {table_name!r} already exists')
     # Create 'work' table.
     table_name = 'work'
     try:
@@ -37,8 +37,9 @@ def init_db():
                     started TIMESTAMP NOT NULL,
                     queue_name TEXT,
                     status TEXT)''')
-        click.echo(f'Table {table_name!r} created.')
+        click.echo(f'Table {table_name!r} created')
     except sqlite3.OperationalError:
-        click.echo(f'Table {table_name!r} already exists.')
+        click.echo(f'Table {table_name!r} already exists')
     # Close database connection.
     con.close()
+    click.echo('Database initialized')
