@@ -25,17 +25,17 @@ class Broker:
                 ORDER BY position DESC
                 '''
             )
-            max_position = c.fetchone()
+            max_position = c.fetchone()  # Returns a tuple.
             new_position = max_position[0] + 1 if max_position else 0
             con.execute(
                 '''
                 INSERT INTO queue (
                     task_id,
-                    position,
-                    published,
                     queue_name,
+                    position,
                     args,
-                    kwargs
+                    kwargs,
+                    published
                 )
                 VALUES (?, ?, ?, ?, ?, ?)
                 ''',
