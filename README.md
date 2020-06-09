@@ -8,7 +8,7 @@ As of yet, the subprocess-based workflow has not been implemented. However, the 
 
 ## Usage
 
-Users must create their own subclass of `soon_kyoo.BaseTask`. Subclasses must define a `run()` method, which contains the business logic for the task (what we care about). There are no restrictions on input arguments or return values.
+Users must create their own subclass of `soon_kyoo.BaseTask`. Subclasses must define a `run()` method, which contains the business logic for the task (what we care about). Input arguments to this method are restricted to being JSON serializable.
 
 ## Example
 
