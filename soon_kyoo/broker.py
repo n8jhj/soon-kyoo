@@ -42,7 +42,7 @@ class Broker:
                 (
                     item['task_id'], queue_name, new_position,
                     dt.datetime.now(), item['args'], item['kwargs'],
-                )
+                ),
             )
         con.close()
 
@@ -70,7 +70,46 @@ class Broker:
             dequeued_item = c.fetchone()
             if dequeued_item:
                 item_id = dequeued_item['task_id']
-                c = con.execute(
+                con.execute(
                     f"DELETE FROM queue WHERE task_id = {item_id!r}")
         con.close()
         return dequeued_item
+
+    def add_work(self, item, status):
+        """Add the given item to the work table."""
+        con = sqlite3.connect(str(db_path))
+        with con:
+            con.execute(
+                '''
+                INSERT INTO work (
+                    task_id,
+                    queue_name,
+                    started,
+                    status
+                )
+                VALUES (?, ?, ?, ?)
+                ''',
+                (item.task_id, item.task_name, dt.datetime.now(), status),
+            )
+        con.close()
+
+    def remove_work(self, item):
+        """Remove the given item from the work table."""
+        con = sqlite3.connect(str(db_path))
+        with con:
+            con.execute(
+                f"DELETE FROM work WHERE task_id = {item.task_id!r}")
+        con.close()
+
+    def update_status(self, item, status):
+        """Update the status of the given item in the work table."""
+        con = sqlite3.connect(str(db_path))
+        with con:
+            con.execute(
+                f'''
+                UPDATE work
+                SET status = {status!r}
+                WHERE task_id = {item.task_id!r}
+                '''
+            )
+        con.close()

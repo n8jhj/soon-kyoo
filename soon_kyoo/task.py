@@ -47,19 +47,28 @@ class BaseTask(abc.ABC):
         execution until some future time.
         """
         try:
-            task_id = str(uuid.uuid4())
+            self.task_id = str(uuid.uuid4())
             task = dict(
-                task_id=task_id,
+                task_id=self.task_id,
                 args=json.dumps(args),
                 kwargs=json.dumps(kwargs),
             )
             self.broker.enqueue(
                 item=task, queue_name=self.task_name)
             self.set_status('enqueued')
-            click.echo(f'Queued task: {task_id}')
+            click.echo(f'Queued task: {self.task_id}')
         except Exception:
             raise RuntimeError(
-                f"Unable to publish task {task_id} to the broker.")
+                f"Unable to publish task {self.task_id} to the broker.")
+
+    def dequeue(self):
+        """Dequeue one task of this type."""
+        item = self.broker.dequeue(queue_name=self.task_name)
+        try:
+            self.task_id = item['task_id']
+        except TypeError:
+            self.task_id = None
+        return item
 
     def set_status(self, status):
         """Set status of the BaseTask instance. Options are:
@@ -73,6 +82,11 @@ class BaseTask(abc.ABC):
                 'detached', 'enqueued', 'dequeued', 'running', 'complete'):
             raise ValueError(f'Task status {status!r} not recognized.')
         self.status = status
+        if status == 'running':
+            self.broker.add_work(self, status)
+        elif status == 'complete':
+            self.broker.update_status(self, status)
+            self.broker.remove_work(self)
 
     def __repr__(self):
         return (f"<{self.__class__.__name__}(status={self.status})>")

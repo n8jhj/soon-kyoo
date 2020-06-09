@@ -27,11 +27,10 @@ class Worker:
         while True:
             try:
                 # Read database.
-                dequeued_item = self.task.broker.dequeue(
-                    queue_name=self.task.task_name)
+                dequeued_item = self.task.dequeue()
                 if not dequeued_item:
                     if not self.waiting:
-                        echo(f"Waiting for next task... (Ctrl + C to quit)")
+                        echo(f"Waiting for next task... (Ctrl + C to quit)\n")
                         self.waiting = True
                     continue
                 self.waiting = False
