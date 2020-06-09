@@ -86,11 +86,11 @@ The following can be found in the examples directory.
 
 ## Running the examples
 
-Example files are included in the examples directory. From within your repository, clone soon-kyoo...
+Example files are included in the examples directory. From within your repository, clone soon-kyoo (will clone into "soon-kyoo" by default)...
 
 `git clone https://github.com/n8jhj/soon-kyoo.git`
 
-...and then install it in editable mode. Be careful to include the dot!
+...and then install it in editable mode.
 
 `pip install -e soon-kyoo`
 
