@@ -13,7 +13,7 @@ def timer_sleep_all(interval, n):
 
 def timer_sleep(interval, i=None, n=None):
     if None not in (i, n):
-        msg = f"{i}/{n} "
+        msg = f"{i+1}/{n} "
     else:
         msg = ''
     msg += f"Sleeping {interval} seconds..."

@@ -36,14 +36,14 @@ class Worker:
                     continue
                 self.waiting = False
                 self.task.set_status('dequeued')
-                task_id, _, _, task_args, task_kwargs, _ = dequeued_item
+                task_id, _, _, _, task_args, task_kwargs = dequeued_item
                 task_args = json.loads(task_args)
                 task_kwargs = json.loads(task_kwargs)
                 # Run.
                 echo(f'Running task: {task_id}')
                 self.task.set_status('running')
                 self.task.run(*task_args, **task_kwargs)
-                echo(f'Finished task: {task_id}')
+                echo(f'Finished task: {task_id}\n')
                 self.task.set_status('complete')
             except KeyboardInterrupt:
                 echo('Quitting')
