@@ -29,6 +29,11 @@ class Worker:
                 # Read database.
                 dequeued_item = self.task.broker.dequeue(
                     queue_name=self.task.task_name)
+                if not dequeued_item:
+                    if not self.waiting:
+                        echo(f"Waiting for next task... (Ctrl + C to quit)")
+                        self.waiting = True
+                    continue
                 self.waiting = False
                 self.task.set_status('dequeued')
                 task_id, _, _, task_args, task_kwargs, _ = dequeued_item
@@ -43,8 +48,3 @@ class Worker:
             except KeyboardInterrupt:
                 echo('Quitting')
                 break
-            except Exception:
-                if not self.waiting:
-                    echo(f'Waiting for next task... (Ctrl + C to quit)')
-                    self.waiting = True
-                raise
