@@ -7,7 +7,7 @@ Broker
 import datetime as dt
 import sqlite3
 
-from soon_kyoo.db_config import db_path
+from .config import db_path
 
 
 class Broker:
