@@ -33,15 +33,15 @@ class Broker:
                     task_id,
                     queue_name,
                     position,
+                    published,
                     args,
-                    kwargs,
-                    published
+                    kwargs
                 )
                 VALUES (?, ?, ?, ?, ?, ?)
                 ''',
                 (
-                    item['task_id'], queue_name, new_position, item['args'],
-                    item['kwargs'], dt.datetime.now(),
+                    item['task_id'], queue_name, new_position,
+                    dt.datetime.now(), item['args'], item['kwargs'],
                 )
             )
         con.close()
