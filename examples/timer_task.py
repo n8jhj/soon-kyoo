@@ -1,12 +1,15 @@
-# timer_task.py
+"""Script for running a timer task.
+"""
 
 import time
 
-from soon_kyoo.task import BaseTask
+import soon_kyoo as sk
+
+from timer_function import timer_sleep_all
 
 
-class TimerTask(BaseTask):
-    """Task to count to a certain number a certain number of times.
+class TimerTask(sk.BaseTask):
+    """Task to count to a certain number a specified number of times.
     """
 
     task_name = 'TimerTask'
@@ -18,17 +21,14 @@ class TimerTask(BaseTask):
         interval - (int) Interval, in seconds.
         n - (int) Number of times to count the given interval.
         """
-        for i in range(n):
-            now = time.strftime('%Y-%m-%d %H:%M:%S')
-            print(f'{i+1}/{n} -- {now} -- Sleeping for {interval} seconds.')
-            time.sleep(interval)
-        print(f'Slept {interval * n} seconds total.')
+        self.interval = interval
+        timer_sleep_all(interval, n)
+        sk.echo(f'Slept {interval * n} seconds total.')
 
 
 if __name__ == '__main__':
     # Create a new task.
     timer_task = TimerTask()
-
     # Add the task to the queue, to be executed at some future time.
     # Arguments to delay() are the same as for run().
     timer_task.delay(3, 3)
