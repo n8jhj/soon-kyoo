@@ -6,7 +6,7 @@ Worker
 
 import json
 
-import click
+from .utils import echo
 
 
 class Worker:
@@ -35,13 +35,16 @@ class Worker:
                 task_args = json.loads(task_args)
                 task_kwargs = json.loads(task_kwargs)
                 # Run.
-                click.echo(f'Running task: {task_id}')
+                echo(f'Running task: {task_id}')
                 self.task.set_status('running')
                 self.task.run(*task_args, **task_kwargs)
-                click.echo(f'Finished task: {task_id}')
+                echo(f'Finished task: {task_id}')
                 self.task.set_status('complete')
+            except KeyboardInterrupt:
+                echo('Quitting')
+                break
             except Exception:
                 if not self.waiting:
-                    click.echo(f'Waiting for next task...')
+                    echo(f'Waiting for next task... (Ctrl + C to quit)')
                     self.waiting = True
                 continue
