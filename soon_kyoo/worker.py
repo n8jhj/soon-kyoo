@@ -47,4 +47,4 @@ class Worker:
                 if not self.waiting:
                     echo(f'Waiting for next task... (Ctrl + C to quit)')
                     self.waiting = True
-                continue
+                raise

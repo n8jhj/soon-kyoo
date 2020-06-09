@@ -68,9 +68,9 @@ class Broker:
                 '''
             )
             dequeued_item = c.fetchone()
-            item_id = dequeued_item['task_id']
-            c = con.execute(f'DELETE FROM queue WHERE task_id = {item_id!r}')
+            if dequeued_item:
+                item_id = dequeued_item['task_id']
+                c = con.execute(
+                    f"DELETE FROM queue WHERE task_id = {item_id!r}")
         con.close()
-        if not dequeued_item:
-            return
         return dequeued_item
