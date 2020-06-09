@@ -32,16 +32,14 @@ class BaseTask(abc.ABC):
         self.set_status('detached')
 
     @property
+    @classmethod
     @abc.abstractmethod
-    def task_name(self):
-        """Class attribute to be implemented by child classes. Indicates
-        the name of this task type.
-        """
-        return None
+    def task_name(cls):
+        pass
 
     @abc.abstractmethod
     def run(self, *args, **kwargs):
-        """Subclasses should implement their business logic here.""""
+        """Subclasses must implement their business logic here."""
         pass
 
     def delay(self, *args, **kwargs):
@@ -60,7 +58,8 @@ class BaseTask(abc.ABC):
             self.set_status('enqueued')
             click.echo(f'Queued task: {task_id}')
         except Exception:
-            raise RuntimeError(f'Unable to publish task {task_id} to the broker.')  
+            raise RuntimeError(
+                f"Unable to publish task {task_id} to the broker.")
 
     def set_status(self, status):
         """Set status of the BaseTask instance. Options are:
