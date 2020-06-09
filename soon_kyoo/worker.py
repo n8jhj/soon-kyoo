@@ -46,5 +46,9 @@ class Worker:
                 echo(f'Finished task: {task_id}\n')
                 self.task.set_status('complete')
             except KeyboardInterrupt:
-                echo('Quitting')
+                self.quit()
                 break
+
+    def quit(self):
+        """Stop working."""
+        echo('Quitting')
