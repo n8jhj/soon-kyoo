@@ -9,7 +9,7 @@ from setuptools import find_packages, setup
 
 # Package meta-data.
 NAME = 'soon-kyoo'
-DESCRIPTION = 'Simple queueing.'
+DESCRIPTION = 'A subprocess-based task queue.'
 AUTHOR = 'Nathaniel Jones'
 EMAIL = 'nathaniel.j.jones@wsu.edu'
 URL = 'https://github.com/n8jhj/soon-kyoo'
@@ -26,10 +26,10 @@ ENTRY_POINTS = '''
     sk=soon_kyoo.cli.soon_kyoo:soon_kyoo
 '''
 
-here = pathlib.Path(__file__).parents[0]
+here = pathlib.Path(__file__).parent
 
 # Import the README and use it as the long-description.
-# Note: this will only work if 'README.md' is present in the MANIFEST.in
+# NOTE: this will only work if 'README.md' is present in the MANIFEST.in
 # file.
 try:
     with open(here / 'README.md', encoding='utf-8') as f:
@@ -57,9 +57,7 @@ setup(
     url=URL,
     version=about['__version__'],
     python_requires=REQUIRES_PYTHON,
-    packages=find_packages(
-        exclude=["test", "*.test", "*.test.*", "test.*",
-            "tree"]),
+    packages=find_packages(),
     include_package_data=True,
     install_requires=REQUIRED,
     entry_points=ENTRY_POINTS,

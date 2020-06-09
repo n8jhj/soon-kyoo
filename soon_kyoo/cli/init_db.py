@@ -13,6 +13,7 @@ from soon_kyoo.config import db_path, schema
 
 @click.command()
 def init_db():
+    db_path.parent.mkdir(exist_ok=True)
     con = sqlite3.connect(str(db_path))
     # Create tables.
     for table_name, table_info in schema.items():

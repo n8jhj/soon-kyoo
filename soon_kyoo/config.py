@@ -7,7 +7,7 @@ import pathlib
 
 # Database location.
 here = pathlib.Path(__file__)
-db_path = here.parents[0] / 'instance' / 'queue.sqlite'
+db_path = here.parent / 'instance' / 'queue.sqlite'
 
 # Database schema.
 # NOTE: Changing this configuration will not change the database schema.
