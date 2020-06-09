@@ -1,6 +1,8 @@
-# timer_worker.py
+"""Script for runnning a Worker dedicated to accomplishing TimerTasks.
+"""
 
-from soon_kyoo.worker import Worker
+import soon_kyoo as sk
+
 from timer_task import TimerTask
 
 
@@ -9,5 +11,5 @@ if __name__ == "__main__":
     timer_task = TimerTask()
 
     # Run worker.
-    worker = Worker(task=timer_task)
+    worker = sk.Worker(task=timer_task)
     worker.start()
