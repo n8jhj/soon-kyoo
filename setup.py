@@ -6,6 +6,8 @@ import pathlib
 
 from setuptools import find_packages, setup
 
+from soon_kyoo.cli.init_db import init_db
+
 
 # Package meta-data.
 NAME = 'soon-kyoo'
@@ -26,7 +28,7 @@ ENTRY_POINTS = '''
     sk=soon_kyoo.cli.soon_kyoo:soon_kyoo
 '''
 
-here = pathlib.Path(__file__).parents[0]
+here = pathlib.Path(__file__).parent
 
 # Import the README and use it as the long-description.
 # Note: this will only work if 'README.md' is present in the MANIFEST.in
@@ -78,3 +80,5 @@ setup(
         'Topic :: Utilities',
     ],
 )
+
+init_db()
