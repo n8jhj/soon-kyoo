@@ -57,9 +57,9 @@ class Broker:
                 f'''
                 SELECT
                     task_id,
+                    queue_name,
                     position,
                     published,
-                    queue_name,
                     args,
                     kwargs
                 FROM queue
