@@ -1,15 +1,14 @@
 # soon-kyoo
-Simple queueing.
+A subprocess-based task queue.
 
 ## Introduction
-Implements a simple FIFO queue using SQLite.
+Soon-Kyoo implements a simple FIFO queue using SQLite. It was created primarily for running long simulations.
+
+As of yet, the subprocess-based workflow has not been implemented. However, the package still works as a task queue.
 
 ## Usage
 
-The user of soon-kyoo must create their own subclass of `soonkyoo.BaseTask`.
-Subclasses must define a `run()` method, which contains the business logic for
-the task (what we care about). There are no restrictions on input arguments or
-return values.
+Users must create their own subclass of `soon_kyoo.BaseTask`. Subclasses must define a `run()` method, which contains the business logic for the task (what we care about). There are no restrictions on input arguments or return values.
 
 ## Example
 
