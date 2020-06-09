@@ -1,4 +1,4 @@
-"""Script for running a timer task.
+"""Script for creating timer tasks.
 """
 
 import time
