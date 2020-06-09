@@ -92,7 +92,7 @@ Example files are included in the examples directory. From within your repositor
 
 ...and then install it in editable mode. Be careful to include the dot!
 
-`pip install -e .`
+`pip install -e soon-kyoo`
 
 Now run the following in two separate terminals:
 
@@ -100,20 +100,20 @@ Now run the following in two separate terminals:
 
 Run the same script a few times.
 
-    C:\Users\...>python examples\timer_task.py
+    C:\Users\...>python soon-kyoo\examples\timer_task.py
     Queued task: 913d56e9-a609-4b84-b937-479a94716527
 
-    C:\Users\...>python examples\timer_task.py
+    C:\Users\...>python soon-kyoo\examples\timer_task.py
     Queued task: da952424-98d9-42e1-8851-91a30924b94b
 
-    C:\Users\...>python examples\timer_task.py
+    C:\Users\...>python soon-kyoo\examples\timer_task.py
     Queued task: 7ec2887a-42a5-4cb6-a0f9-a30453d4c95c
 
     C:\Users\...>
 
 **Terminal 2:**
 
-    C:\Users\...>python examples\timer_worker.py
+    C:\Users\...>python soon-kyoo\examples\timer_worker.py
     Running task: 913d56e9-a609-4b84-b937-479a94716527
     1/3 Sleeping 3 seconds...
     2/3 Sleeping 3 seconds...
