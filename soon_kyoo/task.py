@@ -75,4 +75,4 @@ class BaseTask(abc.ABC):
         self.status = status
 
     def __repr__(self):
-        return (f"{self.__class__.__name__}({self.status})")
+        return (f"<{self.__class__.__name__}(status={self.status})>")
