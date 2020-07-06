@@ -1,5 +1,5 @@
 """This setup.py adapted from
-https://github.com/kennethreitz/setup.py/blob/master/setup.py
+https://github.com/navdeep-G/setup.py/blob/master/setup.py
 """
 
 import pathlib
