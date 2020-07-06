@@ -1,18 +1,11 @@
-"""Functionality for initializing the database.
-
-Click commands:
-init_db
+"""Script for running development code.
 """
 
-import sqlite3
-
-import click
-
-from soon_kyoo.config import db_path, schema
-
-
-@click.command()
 def init_db():
+    import sqlite3
+    from soon_kyoo.config import db_path, schema
+    from soon_kyoo.utils import echo
+
     db_path.parent.mkdir(exist_ok=True)
     con = sqlite3.connect(str(db_path))
     # Create tables.
@@ -24,9 +17,13 @@ def init_db():
         try:
             with con:
                 con.execute(sql_str)
-            click.echo(f'Table {table_name!r} created')
+            echo(f'Table {table_name!r} created')
         except sqlite3.OperationalError:
-            click.echo(f'Table {table_name!r} already exists')
+            echo(f'Table {table_name!r} already exists')
     # Close database connection.
     con.close()
-    click.echo('Database initialized')
+    echo('Database initialized')
+
+
+if __name__ == '__main__':
+    init_db()

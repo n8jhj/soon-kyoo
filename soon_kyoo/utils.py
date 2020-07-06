@@ -6,11 +6,16 @@ echo
 
 import functools
 
-import click
+try:
+    import click
+    feedback_func = click.echo
+except ModuleNotFoundError:
+    feedback_func = print
 
 
+@functools.wraps(feedback_func)
 def echo(*args, **kwargs):
-    return click.echo(*args, **kwargs)
-
-
-functools.update_wrapper(echo, click.echo)
+    """Function for giving feedback. Tries to use click.echo, but
+    defaults to print if Click is not installed.
+    """
+    return feedback_func(*args, **kwargs)

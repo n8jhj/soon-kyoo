@@ -16,9 +16,7 @@ URL = 'https://github.com/n8jhj/soon-kyoo'
 VERSION = ''  # Use version specified in __version__.py
 REQUIRES_PYTHON = '>=3.6.0'
 
-REQUIRED = [
-    'Click',
-]
+REQUIRED = []
 
 ENTRY_POINTS = '''
     [console_scripts]
@@ -57,7 +55,7 @@ setup(
     url=URL,
     version=about['__version__'],
     python_requires=REQUIRES_PYTHON,
-    packages=find_packages(),
+    packages=find_packages(exclude='main.py'),
     include_package_data=True,
     install_requires=REQUIRED,
     entry_points=ENTRY_POINTS,
