@@ -8,9 +8,8 @@ import abc
 import json
 import uuid
 
-import click
-
 from .broker import Broker
+from .utils import echo
 
 
 class BaseTask(abc.ABC):
@@ -56,7 +55,7 @@ class BaseTask(abc.ABC):
             self.broker.enqueue(
                 item=task, queue_name=self.task_name)
             self.set_status('enqueued')
-            click.echo(f'Queued task: {self.task_id}')
+            echo(f'Queued task: {self.task_id}')
         except Exception:
             raise RuntimeError(
                 f"Unable to publish task {self.task_id} to the broker.")
