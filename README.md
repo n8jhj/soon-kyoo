@@ -1,6 +1,15 @@
 # soon-kyoo
 A subprocess-based task queue.
 
+:warning:
+
+**WARNING**
+
+This repository is archived because the package has been renamed to SoonQ.
+Please refer to the up-to-date repository at https://github.com/n8jhj/SoonQ.
+
+:warning:
+
 ## Introduction
 Soon-Kyoo implements a simple FIFO queue using SQLite. It was created primarily for running long simulations.
 
